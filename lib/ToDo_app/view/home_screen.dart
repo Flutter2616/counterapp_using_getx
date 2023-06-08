@@ -191,7 +191,7 @@ class _HomescreenState extends State<Homescreen> {
                                       note: txtnote.text,
                                       title: txttitle.text);
                                   todo.todolist.add(t);
-                                  Navigator.pop(context);
+                                  Get.back();
                                 },
                                 child: Container(
                                   width: 35.w,
@@ -237,14 +237,21 @@ class _HomescreenState extends State<Homescreen> {
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.black)),
-                Icon(Icons.date_range, color: Colors.grey.shade400, size: 15.sp)
+                InkWell(onTap: () {
+                  showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2001),
+                    lastDate: DateTime(2030),
+                  );
+                },child: Icon(Icons.date_range, color: Colors.grey.shade400, size: 15.sp))
               ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
               SizedBox(height: 10),
-              Text("${todo.nowdate}",
+              Text("${todo.pickdate}",
                   style: TextStyle(
                       color: Colors.grey.shade400,
                       fontWeight: FontWeight.w500,
-                      fontSize: 10.sp)),
+                      fontSize: 15.sp)),
               SizedBox(height: 20),
               Container(
                 height: 5.h,
@@ -254,7 +261,9 @@ class _HomescreenState extends State<Homescreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(color: Colors.blue)),
-                child: TextField(
+                child: TextField(onChanged: (value) {
+                  todo.searchbar(value);
+                },
                   textDirection: TextDirection.ltr,
                   decoration: InputDecoration(
                       hintText: "Search your notes",
