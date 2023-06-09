@@ -134,7 +134,7 @@ class _CreatescreenState extends State<Createscreen> {
                                               context: context,
                                               initialTime: TimeOfDay.now());
                                           todo.picktime.value =
-                                              todo.Time_Format(picktime as DateTime);
+                                              todo.setTime(picktime!);
                                         },
                                         child: Obx(
                                               () => Container(

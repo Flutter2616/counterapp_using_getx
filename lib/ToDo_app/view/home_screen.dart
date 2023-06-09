@@ -34,6 +34,8 @@ class _HomescreenState extends State<Homescreen> {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
             onPressed: () {
+              txttitle.clear();
+              txtnote.clear();
               showModalBottomSheet(
                   isDismissible: false,
                   backgroundColor: Colors.blue.shade200,
@@ -81,23 +83,21 @@ class _HomescreenState extends State<Homescreen> {
                                   todo.pickdate.value =
                                       todo.date_Format(Pickdate!);
                                 },
-                                child: Obx(
-                                  () => Container(
-                                    height: 6.h,
-                                    width: 45.w,
-                                    padding: EdgeInsets.all(8),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.white),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text("${todo.pickdate}"),
-                                          SizedBox(width: 10),
-                                          Icon(Icons.calendar_month),
-                                        ]),
-                                  ),
+                                child: Container(
+                                  height: 6.h,
+                                  width: 45.w,
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.white),
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Obx(() => Text("${todo.pickdate}")),
+                                        SizedBox(width: 10),
+                                        Icon(Icons.calendar_month),
+                                      ]),
                                 ),
                               ),
                               InkWell(
@@ -106,25 +106,23 @@ class _HomescreenState extends State<Homescreen> {
                                       context: context,
                                       initialTime: TimeOfDay.now());
                                   todo.picktime.value =
-                                      todo.Time_Format(picktime as DateTime);
+                                      todo.setTime(picktime!);
                                 },
-                                child: Obx(
-                                  () => Container(
-                                    height: 6.h,
-                                    width: 45.w,
-                                    padding: EdgeInsets.all(8),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.white),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text("${todo.picktime}"),
-                                          SizedBox(width: 10),
-                                          Icon(Icons.watch_later),
-                                        ]),
-                                  ),
+                                child: Container(
+                                  height: 6.h,
+                                  width: 45.w,
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.white),
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Obx(() => Text("${todo.picktime}")),
+                                        SizedBox(width: 10),
+                                        Icon(Icons.watch_later),
+                                      ]),
                                 ),
                               ),
                             ],

@@ -37,19 +37,21 @@ class Todocontroller extends GetxController {
   List<Todomodel> filterlist = [];
   DateTime nowdate = DateTime.now();
   RxString pickdate = "${DateTime.now()}".obs;
-  TimeOfDay nowtime = TimeOfDay.now();
-  RxString picktime = "12:00".obs;
+
+
 
   String date_Format(DateTime date) {
     var d = DateFormat("dd-MM-yyyy");
     return d.format(date);
   }
 
-  String Time_Format(DateTime date)
+  TimeOfDay nowtime = TimeOfDay.now();
+  RxString picktime = "${TimeOfDay.now()}".obs;
+  String setTime(TimeOfDay t)
   {
-    var t=DateFormat("dd-MM-yyyy");
-    return t.format(date);
+    return "${t.hour.toString().padLeft(2,'0')} : ${t.minute.toString().padLeft(2,'0')}";
   }
+
 
   void searchbar(String value) {
     if(value.isEmpty)

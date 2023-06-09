@@ -15,7 +15,7 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(
-      Duration(seconds: 2),
+      Duration(seconds: 3),
       () {
         Get.offAllNamed('/home');
       },
